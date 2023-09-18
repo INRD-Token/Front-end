@@ -1,0 +1,11 @@
+@media (max-width: 620px) {
+    .container > div {
+        display: flex;
+        flex-direction: column,
+    }
+}
+.container > div {
+  cursor: pointer;
+  height:100%;
+  will-change: transform, opacity;
+}
