@@ -28,24 +28,24 @@ export default function Apps() {
       <div style={styles.main}>
         <div style={styles.box}>
           <Button onClick={()=>setBlock(1)} variant={(block===1)?"text":"filled"} size="large">
-            Deposit
+            mint
           </Button>
           <Button onClick={()=>setBlock(2)} variant={(block===2)?"text":"filled"} size="large">
             Redeem
           </Button>
           <Button onClick={()=>setBlock(3)} variant={(block===3)?"text":"filled"} size="large">
-            mint
+            treasury
           </Button>
           <div style={styles.box}>
             <Paper  className={styles.root} square={true} elevation={4}>
-            {
+          {
               (block===1)?
-              <Buynow/>
+              <Mint/>
               :(block===2)?
               <Redeem/>
               :
-              <Mint/>
-            }
+              <Buynow/>
+          }
             </Paper>
           </div>
         </div>

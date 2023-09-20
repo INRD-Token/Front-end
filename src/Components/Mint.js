@@ -4,9 +4,10 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { ethers } from "ethers";
-import USDTABI from './../Asserts/USDTABI.json'
 import INRDABI from './../Asserts/INRDABI.json'
+import USDTABI from './../Asserts/USDTABI.json'
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -26,10 +27,35 @@ export default function Mint() {
       backgroundColor:"green",
       color:"#fff"
     },
+    calc:{
+      padding: "15px",
+      //fontWeight:"bold",
+      fontSize:"20px",
+    }
   };
-  const handleChange = (event) => {
+  const handleTokenChange = (event) => {
     setToken(event.target.value);
+
   };
+  
+  const handleChange=async(e)=>{
+    const _Amount = parseInt(e.target.value)
+    if(_Amount>0){
+    setAmount(parseInt(e.target.value))
+    const calculation = document.querySelector('.calc')
+    console.log(calculation)
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const signer = provider.getSigner()
+    const inrd =new ethers.Contract(INRD,INRDABI,signer)
+    const price = await inrd.getInrToUsdPrice()
+    console.log(price)
+    calculation.innerHTML =  `Total INRD minting amount = ${parseInt((_Amount*(10**8))/price)}`
+  }
+  else{
+    const calculation = document.querySelector('.calc')
+    calculation.innerHTML = ""
+  }
+  }
 
   const mintINRD=async()=>{
     console.log(token,amount)
@@ -38,13 +64,13 @@ export default function Mint() {
       const signer = provider.getSigner()
       //const usrAddress =await signer.getAddress()
       const _token = ethers.utils.formatBytes32String(token);
-      //console.log(usrAddress)
+      console.log(_token)
       const usdt =new ethers.Contract(USDT,USDTABI,signer)
       const approve = await usdt.approve(INRD,amount)
       await approve.wait()
       console.log(approve)
       const inrd =new ethers.Contract(INRD,INRDABI,signer)
-      const mint = await inrd.mintINRDToken('0x5553445400000000000000000000000000000000000000000000000000000000',amount,{gasLimit: 100000,})
+      const mint = await inrd.mintINRDToken(_token,amount,{gasLimit: 100000,})
       console.log(mint)
     } catch (error) {
       console.log(error.message)
@@ -60,10 +86,11 @@ export default function Mint() {
                Mint Amount
             </InputLabel>
             <TextField
-              onChange={(e)=>setAmount(parseInt(e.target.value))}
+              onChange={(e)=>handleChange(e)}
               fullWidth
+              type="number"
               style={Boxing.textBoxs}
-              label="INRD Amount"
+              label="USDT/USDC Amount"
               id="fullWidth"
             />
             <InputLabel fullWidth id="demo-simple-select-label">
@@ -75,11 +102,12 @@ export default function Mint() {
               id="demo-simple-select"
               value={token}
               label="token"
-              onChange={handleChange}
+              onChange={handleTokenChange}
             >
               <MenuItem value={"USDT"}>USDT</MenuItem>
               <MenuItem value={"USDC"}>USDC</MenuItem>
             </Select>
+            <Typography style={Boxing.calc} className="calc" variant="p" gutterBottom></Typography>
           </CardContent>
           <CardActions>
             <Button onClick={mintINRD} fullWidth style={Boxing.btn} variant="outlined" size="large">
