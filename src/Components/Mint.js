@@ -15,6 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 export default function Mint() {
   const [token, setToken] = React.useState("USDT");
   const [amount,setAmount] = React.useState(0)
+  const [INRDToken,setINRDToken] = React.useState(0)
   const INRD = "0xF5336Eef5aBf5dBBAF3Bce939F7F9c083452F1CC"
   const USDT = "0x7037e93365A7c73E64772556e812a3725Eb38caB"
   const Boxing = {
@@ -34,7 +35,7 @@ export default function Mint() {
     }
   };
   const handleTokenChange = (event) => {
-    setToken(event.target.value);
+    setToken(event  .target.value);
 
   };
   
@@ -42,18 +43,15 @@ export default function Mint() {
     const _Amount = parseInt(e.target.value)
     if(_Amount>0){
     setAmount(parseInt(e.target.value))
-    const calculation = document.querySelector('.calc')
-    console.log(calculation)
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
     const inrd =new ethers.Contract(INRD,INRDABI,signer)
     const price = await inrd.getInrToUsdPrice()
+    setINRDToken(parseInt((_Amount*(10**8))/price))
     console.log(price)
-    calculation.innerHTML =  `Total INRD minting amount = ${parseInt((_Amount*(10**8))/price)}`
   }
   else{
-    const calculation = document.querySelector('.calc')
-    calculation.innerHTML = ""
+    setINRDToken(0)
   }
   }
 
@@ -83,31 +81,44 @@ export default function Mint() {
         <React.Fragment>
           <CardContent style={Boxing.outerCard}>
             <InputLabel fullWidth id="demo-simple-select-label">
-               Mint Amount
+               You Pay
             </InputLabel>
+            <div style={{display:"grid",gridTemplateColumns:"3fr 1fr"}}>
+            <TextField
+              onChange={(e)=>handleChange(e)}
+              type="number"
+              style={Boxing.textBoxs}
+              id="fullWidth"
+            >
+            </TextField>
+              <Select
+              value={token}
+              label="token"
+              onChange={handleTokenChange}
+              >
+              <MenuItem value={"USDT"}>USDT</MenuItem>
+              <MenuItem value={"USDC"}>USDC</MenuItem>
+            </Select>
+            </div>
+            <InputLabel fullWidth id="demo-simple-select-label">
+              You Receive
+            </InputLabel>
+            <div style={{display:"grid",gridTemplateColumns:"3fr 1fr"}}>
             <TextField
               onChange={(e)=>handleChange(e)}
               fullWidth
               type="number"
               style={Boxing.textBoxs}
-              label="USDT/USDC Amount"
+              value={INRDToken}
               id="fullWidth"
             />
-            <InputLabel fullWidth id="demo-simple-select-label">
-              Token
-            </InputLabel>
-            <Select
-              fullWidth
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={token}
-              label="token"
+              <Select
+              value="INRD"
               onChange={handleTokenChange}
-            >
-              <MenuItem value={"USDT"}>USDT</MenuItem>
-              <MenuItem value={"USDC"}>USDC</MenuItem>
+              >
+              <MenuItem value={"INRD"}>INRD</MenuItem>
             </Select>
-            <Typography style={Boxing.calc} className="calc" variant="p" gutterBottom></Typography>
+            </div>
           </CardContent>
           <CardActions>
             <Button onClick={mintINRD} fullWidth style={Boxing.btn} variant="outlined" size="large">

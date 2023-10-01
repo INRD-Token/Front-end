@@ -37,7 +37,7 @@ export default function Aboutus() {
       <Navbar />
       <Box m={2} style={styles.main}>
         <div>
-          <Typography style={styles.header} variant="h2" gutterBottom>
+          <Typography style={styles.header} variant="h3" gutterBottom>
             About us
           </Typography>
 
@@ -88,20 +88,6 @@ export default function Aboutus() {
               it's a testament to the harmonious convergence of global efforts,
               regulatory evolution, and our unwavering commitment to carving a
               new path for the financial world.
-            </Typography>
-          </Box>
-
-          <Box mt={2}>
-            <Typography style={styles.paraText} variant="p" gutterBottom>
-              The pages of history continue to unfold, and we find ourselves at
-              the precipice of monumental change. From regulatory diplomacy to
-              the visionary endeavors of our team, every chapter of our story is
-              etched with the spirit of progress. As the Indian economy
-              continues to embrace the future, we stand as pioneers, passionate
-              about leveraging the potential of INR in the grand tapestry of
-              decentralized finance. Our commitment resonates, and our
-              aspirations are ignited as we champion the remarkable
-              transformation of monetary landscapes.
             </Typography>
           </Box>
         </div>

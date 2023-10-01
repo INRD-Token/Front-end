@@ -1,0 +1,129 @@
+header {
+    width: 100%;
+    align-items:left;
+  }
+  
+  header .header-flex {
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items:left;
+  }
+  
+  header .header-content {
+    width: 50%;
+    margin-top: 100px;
+  }
+  
+  header .header-content h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  header .header-content h1 .hero-content-line {
+    height: 58px;
+    overflow: hidden;
+  }
+  
+  header .header-content p {
+    color: var(--grey-color);
+  }
+  
+  header .header-image {
+    position: relative;
+    width: 50%;
+  }
+  
+  header .header-image .header-image-inner {
+    position: absolute;
+    overflow: hidden;
+  }
+  
+  header .header-image img {
+    width: 100%;
+  }
+  
+  header .backed {
+    text-align: center;
+    margin-top: 10%;
+  }
+  
+  header .backed .backed-flex {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header .backed .backed-flex img {
+    width: 4%;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    header .header-content h1 {
+      font-size: 2.3rem;
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {
+    header .header-flex {
+      width: 80%;
+    }
+  
+    header .header-content {
+      margin-top: 50px;
+    }
+    header .header-content h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media screen and (max-width: 900px) {
+    header .header-flex {
+      flex-direction: column;
+    }
+    header .header-content {
+      width: 100%;
+    }
+    header .header-image {
+      width: 90%;
+      margin: auto;
+    }
+    header .backed {
+      margin-top: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    header .header-flex {
+      width: 90%;
+    }
+    header .header-image {
+      width: 100%;
+      margin-top: 20px;
+    }
+    header .header-content {
+      margin-top: 30px;
+    }
+    header .backed .backed-flex img {
+      width: 8%;
+    }
+    header .backed h1 {
+      font-size: 1.6rem;
+    }
+  }
+  
+  @media screen and (max-width: 380px) {
+    header .header-content h1 {
+      font-size: 1.6rem;
+    }
+    header .header-content h1 .hero-content-line {
+      height: 44px;
+    }
+    header .backed {
+      margin-top: 90%;
+    }
+  }

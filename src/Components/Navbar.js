@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import GradientButton from './GradientButton.js';
 import { ethers } from "ethers";
 import LOGO from "./../Asserts/Images/LOGO.png";
 export default function Navbar() {
@@ -41,9 +42,9 @@ export default function Navbar() {
         <Grid xs={1}>
           {isConnected ? (
             <>
-              <Button disabled variant="contained" style={btn} size="large">
-                Connected
-              </Button>
+              <Button size="medium" href="/app">
+              <GradientButton>Mint now</GradientButton>
+            </Button>
             </>
           ) : (
             <Button variant="contained" style={btn} size="large">

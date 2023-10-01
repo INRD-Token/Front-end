@@ -1,0 +1,47 @@
+button {
+    z-index: 1;
+    cursor: pointer;
+    padding: 5px 12px;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    transition: 0.5s;
+    font-size: 18px;
+  }
+  
+  .button {
+    color: #935cfe;
+    background: var(--white-color);
+  }
+  
+  .button:hover {
+    background-color: transparent;
+    color: var(--white-color);
+  }
+  
+  .gradient-button {
+    color: var(--white-color);
+    background: linear-gradient(135deg, #6699ff 0%, #ff3366 100%);
+  }
+  
+  .gradient-button:hover {
+    background-color: #935cfe;
+    color: var(--white-color);
+  }
+  
+  .button a {
+    text-decoration: none;
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gradient-button a {
+    text-decoration: none;
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
