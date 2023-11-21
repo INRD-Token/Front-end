@@ -1,0 +1,13 @@
+body,html,head{
+  padding: 0;
+  margin: 0;
+  background-image: url('./Images/bg.jpg');
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.HomepageINRD{
+  background-image: url('Images/homepageinrd1.jpg');
+}
